@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod-13-6
+  labels:
+    run: mypod-13-6
+spec:
+  serviceAccountName: fundamentals-challenge # <- this service account
+  containers:
+  - name: c1
+    image: ghcr.io/learnk8s/labs-fundamentals:kubescratch
+    ports:
+    - containerPort: 31337
+  - name: c2
+    image: nilcons/debian
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-mypod-13-6
+  labels:
+    run: mypod-13-6
+spec:
+  ports:
+  - port: 80
+    targetPort: 31337
+  selector:
+    run: mypod-13-6
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-mypod-13-6
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /v13-6
+        pathType: Prefix
+        backend:
+          service:
+            name: service-mypod-13-6
+            port:
+              number: 80

@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydep-13-5
+  labels:
+    run: mydep-13-5
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: mydep-13-5
+  template:
+    metadata:
+      labels:
+        run: mydep-13-5
+    spec:
+      serviceAccountName: fundamentals-challenge # <- this service account
+      containers:
+      - name: c1
+        image: ghcr.io/learnk8s/labs-fundamentals:tweedledee
+        ports:
+        - containerPort: 7890
+      - name: c2
+        image: ghcr.io/learnk8s/labs-fundamentals:tweedledum
+        ports:
+        - containerPort: 6789
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-mydep-13-5
+spec:
+  ports:
+  - name: tweedledee
+    port: 80
+    targetPort: 7890
+  - name: tweedledum
+    port: 81
+    targetPort: 6789
+  selector:
+    run: mydep-13-5
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-mydep-13-5
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /v13-5-tweedledee
+        pathType: Prefix
+        backend:
+          service:
+            name: service-mydep-13-5
+            port:
+              number: 80
+      - path: /v13-5-tweedledum
+        pathType: Prefix
+        backend:
+          service:
+            name: service-mydep-13-5
+            port:
+              number: 81

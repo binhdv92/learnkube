@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fundamentals-challenge
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: fundamentals-challenge
+rules:
+  - apiGroups: ['', 'apps', 'networking.k8s.io']
+    resources: ['pods', 'replicasets', 'services', 'ingresses', 'endpoints']
+    verbs: ['list']
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: fundamentals-challenge
+subjects:
+  - kind: ServiceAccount
+    name: fundamentals-challenge
+roleRef:
+  kind: Role
+  name: fundamentals-challenge
+  apiGroup: rbac.authorization.k8s.io

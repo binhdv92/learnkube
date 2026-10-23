@@ -1,0 +1,1 @@
+https://academy.learnk8s.io/fundamentals
