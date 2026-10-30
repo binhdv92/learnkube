@@ -56,3 +56,8 @@ TEMPLATING:
 - `HELM` <-- text-oriented, not yaml
     - values.yaml: the only place to change.
 - `KRO`: 
+
+
+# Network:
+https://istio.io/latest/docs/examples/bookinfo/
+https://render.com/blog/a-hidden-dns-dependency-in-kubernetes
