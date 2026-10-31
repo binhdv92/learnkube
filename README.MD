@@ -2,14 +2,15 @@ Learnk8s Academy
 
 https://academy.learnk8s.io/dashboard
 
-Your VM is ready, open vanbinh.workspace.learnkube.com (20.127.137.177) in Google Chrome, password is: broad-base, SSH with the same password: ubuntu@20.127.137.177
+# Day 1 note:
 
-https://github.com/kelseyhightower/kubernetes-the-hard-way
+# Date 2 note:
+- https://istio.io/latest/docs/examples/bookinfo/
+- https://render.com/blog/a-hidden-dns-dependency-in-kubernetes
 
-minikube node list
-minikube start --no-kubernetes --container-runtime=containerd --driver=docker --nodes 3
-
-ubuntu@vanbinh:~$ minikube node list
-minikube        192.168.49.2
-minikube-m02    192.168.49.3
-minikube-m03    192.168.49.4
+# Day 3 note:
+# Contact Info:
+- certomodo.io
+- amin@certomodo.io
+- linkedin.com/in/aminastaneh
+- https://amin.is
